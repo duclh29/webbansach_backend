@@ -1,0 +1,164 @@
+USE webbansach;
+
+SET FOREIGN_KEY_CHECKS = 0;
+
+TRUNCATE TABLE chi_tiet_don_hang;
+TRUNCATE TABLE don_hang;
+TRUNCATE TABLE sach_yeu_thich;
+TRUNCATE TABLE su_danh_gia;
+TRUNCATE TABLE sach_theloai;
+TRUNCATE TABLE hinh_anh;
+TRUNCATE TABLE sach;
+TRUNCATE TABLE nguoidung_quyen;
+TRUNCATE TABLE nguoi_dung;
+TRUNCATE TABLE quyen;
+TRUNCATE TABLE the_loai;
+TRUNCATE TABLE hinh_thuc_giao_hang;
+TRUNCATE TABLE hinh_thuc_thanh_toan;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+
+-- QUYEN
+INSERT INTO quyen(ten_quyen) VALUES
+('ROLE_ADMIN'),
+('ROLE_USER'),
+('ROLE_MANAGER'),
+('ROLE_STAFF'),
+('ROLE_EDITOR'),
+('ROLE_CUSTOMER'),
+('ROLE_SUPPORT'),
+('ROLE_SHIPPER'),
+('ROLE_MODERATOR'),
+('ROLE_GUEST');
+
+
+-- NGUOI DUNG
+INSERT INTO nguoi_dung
+(ho_dem,ten,ten_dang_nhap,mat_khau,email,so_dien_thoai,gioi_tinh,dia_chi_mua_hang,dia_chi_giao_hang)
+VALUES
+('Nguyen Van','A','user1','123456','user1@gmail.com','0901111111','M','Ha Noi','Ha Noi'),
+('Tran Thi','B','user2','123456','user2@gmail.com','0902222222','F','Ha Noi','Ha Noi'),
+('Le Van','C','user3','123456','user3@gmail.com','0903333333','M','Da Nang','Da Nang'),
+('Pham Thi','D','user4','123456','user4@gmail.com','0904444444','F','Hue','Hue'),
+('Hoang Van','E','user5','123456','user5@gmail.com','0905555555','M','Hai Phong','Hai Phong'),
+('Vo Thi','F','user6','123456','user6@gmail.com','0906666666','F','Can Tho','Can Tho'),
+('Do Van','G','user7','123456','user7@gmail.com','0907777777','M','Ha Noi','Ha Noi'),
+('Bui Thi','H','user8','123456','user8@gmail.com','0908888888','F','Ha Noi','Ha Noi'),
+('Dang Van','I','user9','123456','user9@gmail.com','0909999999','M','Da Nang','Da Nang'),
+('Pham Van','K','user10','123456','user10@gmail.com','0910000000','M','Hue','Hue');
+
+
+-- USER ROLE
+INSERT INTO nguoidung_quyen(ma_nguoi_dung,ma_quyen) VALUES
+(1,1),
+(2,2),
+(3,2),
+(4,2),
+(5,2),
+(6,2),
+(7,2),
+(8,2),
+(9,2),
+(10,2);
+
+
+-- THE LOAI
+INSERT INTO the_loai(ten_the_loai) VALUES
+('Lap trinh'),
+('Khoa hoc'),
+('Kinh te'),
+('Tieu thuyet'),
+('Truyen tranh'),
+('Tam ly'),
+('Ky nang song'),
+('Ngoai ngu'),
+('Lich su'),
+('Thieu nhi');
+
+
+-- SACH
+INSERT INTO sach
+(isbn,gia_ban,gia_niem_yet,ma_ta,so_luong,ten_sach,ten_tac_gia,trung_binh_xep_hang)
+VALUES
+('ISBN001',120000,150000,'Sach Java co ban',100,'Lap Trinh Java','Nguyen Van A',4.5),
+('ISBN002',170000,200000,'Spring Boot guide',80,'Lap Trinh Spring Boot','Tran Van B',4.6),
+('ISBN003',150000,180000,'ReactJS tutorial',70,'ReactJS Co Ban','Le Van C',4.2),
+('ISBN004',250000,300000,'Clean Code',50,'Clean Code','Robert Martin',4.9),
+('ISBN005',300000,350000,'Design Pattern',40,'Design Pattern','GoF',4.8),
+('ISBN006',190000,220000,'Data Structure',60,'Data Structure','Mark Allen',4.3),
+('ISBN007',350000,400000,'Machine Learning',30,'Machine Learning','Andrew Ng',4.7),
+('ISBN008',380000,450000,'Deep Learning',20,'Deep Learning','Ian Goodfellow',4.9),
+('ISBN009',140000,170000,'Python basics',90,'Python Programming','John Smith',4.4),
+('ISBN010',130000,160000,'SQL database',110,'SQL Master','David Lee',4.1);
+
+
+-- SACH THE LOAI
+INSERT INTO sach_theloai(ma_sach,ma_the_loai) VALUES
+(1,1),(2,1),(3,1),(4,2),(5,2),
+(6,3),(7,3),(8,4),(9,1),(10,3);
+
+
+-- HINH THUC GIAO HANG
+INSERT INTO hinh_thuc_giao_hang
+(ten_hinh_thuc_giao_hang,chi_phi_giao_hang,mo_ta)
+VALUES
+('Giao nhanh',30000,'Giao trong 2h'),
+('Giao tiet kiem',15000,'3-5 ngay'),
+('Giao tieu chuan',20000,'2-3 ngay'),
+('Hoa toc',50000,'1h'),
+('COD',25000,'Thanh toan khi nhan'),
+('Grab Express',35000,'Grab'),
+('GHN',22000,'GHN'),
+('Viettel Post',20000,'Viettel'),
+('Ninja Van',23000,'Ninja'),
+('J&T',21000,'J&T');
+
+
+-- HINH THUC THANH TOAN
+INSERT INTO hinh_thuc_thanh_toan
+(ten_hinh_thuc_thanh_toan,chi_phi_thanh_toan,mo_ta)
+VALUES
+('Tien mat',0,'Nhan hang tra tien'),
+('Chuyen khoan',0,'Bank'),
+('Momo',0,'Momo'),
+('ZaloPay',0,'Zalo'),
+('VNPay',0,'VNPay'),
+('PayPal',0,'Paypal'),
+('Credit Card',0,'Visa'),
+('Debit Card',0,'ATM'),
+('Apple Pay',0,'Apple'),
+('Google Pay',0,'Google');
+
+
+-- DON HANG
+INSERT INTO don_hang
+(ngay_tao,tong_tien,tong_tien_san_pham,chi_phi_giao_hang,chi_phi_thanh_toan,
+ma_hinh_thuc_giao_hang,ma_hinh_thuc_thanh_toan,ma_nguoi_dung)
+VALUES
+('2026-03-10',150000,120000,30000,0,1,1,1),
+('2026-03-10',200000,170000,30000,0,1,2,2),
+('2026-03-11',180000,150000,30000,0,2,1,3),
+('2026-03-11',250000,220000,30000,0,2,2,4),
+('2026-03-12',170000,140000,30000,0,1,1,5),
+('2026-03-12',300000,270000,30000,0,3,3,6),
+('2026-03-13',220000,200000,20000,0,3,2,7),
+('2026-03-13',260000,230000,30000,0,1,1,8),
+('2026-03-14',280000,250000,30000,0,2,2,9),
+('2026-03-14',190000,160000,30000,0,1,1,10);
+
+
+-- CHI TIET DON HANG
+INSERT INTO chi_tiet_don_hang
+(gia_ban,so_luong,ma_don_hang,ma_sach)
+VALUES
+(120000,1,11,1),
+(170000,1,12,2),
+(150000,1,13,3),
+(250000,1,14,4),
+(140000,1,15,9),
+(300000,1,16,5),
+(200000,1,17,6),
+(230000,1,18,7),
+(250000,1,19,8),
+(160000,1,20,10);
