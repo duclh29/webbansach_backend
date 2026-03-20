@@ -5,16 +5,18 @@ import com.leduc.webbansach_backend.entity.TheLoai;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.metamodel.Type;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class MethodRestConfig implements RepositoryRestConfigurer {
 
-    private String url = "http://localhost:8080";
+    private String url = "http://localhost:3000";
 
     @Autowired
     private EntityManager entityManager;
@@ -35,6 +37,10 @@ public class MethodRestConfig implements RepositoryRestConfigurer {
                         .toArray(Class[]::new)
         );
 
+        cors.addMapping("/**")
+                        .allowedOrigins(url)
+                        .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE");
+
 
         disableHttpMethods(TheLoai.class, config, chanCacPhuongThuc);
         
@@ -52,4 +58,5 @@ public class MethodRestConfig implements RepositoryRestConfigurer {
                 .withItemExposure(((metdata, httpMethods) -> httpMethods.disable(methods)))
                 .withCollectionExposure(((metdata, httpMethods) -> httpMethods.disable(methods)));
     }
+
 }
