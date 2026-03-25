@@ -37,17 +37,21 @@ public class MethodRestConfig implements RepositoryRestConfigurer {
                         .toArray(Class[]::new)
         );
 
-        cors.addMapping("/**")
-                        .allowedOrigins(url)
-                        .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE");
+//        cors.addMapping("/**")
+//                        .allowedOrigins(url)
+//                        .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE");
 
 
         disableHttpMethods(TheLoai.class, config, chanCacPhuongThuc);
         
-        HttpMethod[] chanCacThuc = {
-                 HttpMethod.DELETE
-        };
-        disableHttpMethods(NguoiDung.class, config, chanCacThuc);
+//        HttpMethod[] chanCacThuc = {
+//                 HttpMethod.DELETE,
+//                HttpMethod.PUT,
+//                HttpMethod.PATCH,
+//                HttpMethod.POST,
+//
+//        };
+//        disableHttpMethods(NguoiDung.class, config, chanCacThuc);
 
 
     }
