@@ -47,7 +47,6 @@ public class UserServiceImpl implements UserService {
         User user = new User(nguoiDung.getTenDangNhap(), nguoiDung.getMatKhau(), rolesToAuthorities(nguoiDung.getDanhSachQuyen()));
         return user;
 
-//        System.out.println(rolesToAuthorities(nguoiDung.getDanhSachQuyen()));
 
     }
 
